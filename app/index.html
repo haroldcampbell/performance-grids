@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="utf-8">
+	<title>Activity Grid</title>
+
+	<!--[[css-->
+	<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/app.css">
+	<!--<link rel="stylesheet" href="assets/css/animations.css">-->
+	<!--css]]-->
+
+	<!--[[js-->
+	<script src="../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../bower_components/angular/angular.js"></script>
+	<!--<script src="../bower_components/angular-animate/angular-animate.js"></script>-->
+	<script src="../bower_components/angular-route/angular-route.js"></script>
+	<script src="../bower_components/angular-resource/angular-resource.js"></script>
+	<script src="assets/js/app.js"></script>
+	<script src="assets/js/app.controller.js"></script>
+	<!--<script src="assets/js/animations.js"></script>-->
+	<!--<script src="assets/js/sections/home.controller.js"></script>-->
+	<!--<script src="assets/js/sections/details.controller.js"></script>-->
+	<!--<script src="assets/js/sections/sections.controller.js"></script>-->
+	<!--<script src="assets/js/sections/sections.service.js"></script>-->
+	<!--<script src="assets/js/preview/preview.section.model.directive.js"></script>-->
+	<!--<script src="assets/js/preview/show.section.preview.directive.js"></script>-->
+	<!--js]]-->
+
+	<script type="text/ng-template" id="partials/home.html">
+		<div show-section-preview preview-section-model="previewSection" ng-show="getPreviewSection()"></div>
+		<div class="instructions" ng-hide="getPreviewSection()">
+			<h2>Hello!</h2>
+
+			Using the style explorer is easy. Mouse-over the sections on the left to see what they contain.
+			Click on
+			any section to drill-down to that section.
+		</div>
+	</script>
+	<script src="//0.0.0.0:35729/livereload.js"></script>
+
+</head>
+
+<body>
+<div class="app">
+	<!--<div class="attrib"> Based entirely on John Papa's <a href="">AngularJS Style Guide</a>.</div>-->
+
+	<!--<header>-->
+		<!--<p>AngularJs Style Guide Explorer</p>-->
+
+		<!--<div>A quick and simple way to explore and navigate the guide</div>-->
+		<!--<div class="version">0.0.6</div>-->
+	<!--</header>-->
+
+	<div class="app-content">
+		<!--<section class="main-nav" ng-controller="SectionsController as secs">-->
+			<!--&lt;!&ndash;<ul>&ndash;&gt;-->
+			<!--<ul ng-mouseleave="clearPreviewSection()">-->
+				<!--<li ng-repeat="section in secs.sections" ng-mouseenter="setPreviewSection(section)">-->
+					<!--<a href="#/details/{{section.url}}">{{section.title}}</a>-->
+				<!--</li>-->
+			<!--</ul>-->
+		<!--</section>-->
+
+		<section class="main">
+			<div class="content">
+				<div class="view-container">
+					<div ng-view class="view-frame"></div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+
+</body>
+</html>
