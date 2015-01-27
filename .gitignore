@@ -6,4 +6,4 @@ build
 node_modules
 bower_components
 npm-debug.log
-assets/css/sass
+app/assets/css/

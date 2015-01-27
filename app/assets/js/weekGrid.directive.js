@@ -1,7 +1,7 @@
 (function(){
     'use strict';
 
-    ang()
+    angular.module('app')
         .directive('weekGrid', weekGrid);
 
     function weekGrid () {

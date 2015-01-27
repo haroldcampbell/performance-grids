@@ -9,7 +9,7 @@ module.exports = function (grunt) {
             },
 
             jshint: {
-                files: ['Gruntfile.js', 'app/assets/js/**/*.js', 'test/**/*.js', '!test/jasmine-jquery.js'],
+                files: ['Gruntfile.js', 'app/assets/js/**/*.js'],
                 options: {
                     // options here to override JSHint defaults
                     globals: {
@@ -35,6 +35,10 @@ module.exports = function (grunt) {
                     options: {
                         livereload: true
                     }
+                },
+                tests: {
+                    files: ['tests/**/*.js'],
+                    tasks: ['jshint']
                 }
             },
 
