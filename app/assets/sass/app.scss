@@ -7,27 +7,45 @@ $base-box-size: 10px;
 
 $font-size: $base-font-size * $box-size/$base-box-size;
 
-
 body {
   font-size: 1em;
 }
 
-div.week {
+div.grid {
+  display: inline-block;
   border: solid 1px #ccc;
+  padding: $box-size/2;
+
+  margin:40px;
+
+  .grid-container {
+    display: inline-block;
+    border: solid 1px #ccc;
+
+    .title {
+      font-size: 1.2em;
+      color: #707077;
+      text-align: center;
+      padding: 5px 0;
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+div.week {
   position: relative;
-  padding: $box-size;
-  margin: $box-size;
+  padding: $box-size/2 $box-size;
   padding-right: $box-size + $box-space;
   display: inline-block;
 
   div.time-stamp {
     position: absolute;
-//    border: solid 1px #ccc;
 
     div.am,div.pm {
       float:left;
       font-size: $font-size;
       color: $label-color;
+
     }
 
     div.am {
@@ -38,7 +56,7 @@ div.week {
     div.pm {
       position: absolute;
       top: ($box-size + $box-space) * 5 + $box-space;
-      left:0;
+      left: 0;
     }
   }
 }
@@ -64,12 +82,10 @@ div.days {
 
     div.hours {
       margin-top: $box-size + $box-space*2;//$box-size;
-//            border: solid 1px #ccc;
 
       div.hour {
         height: $box-size;
         width: $box-size;
-        //      border: solid 1px #eee;
         margin: 2px;
         padding: 0;
         background-color: #f0f0f0;
@@ -77,7 +93,6 @@ div.days {
 
       div.day_am {
         background-color: #f9f9f9;
-        //      border: solid 1px #f0f0f0;
       }
     }
   }

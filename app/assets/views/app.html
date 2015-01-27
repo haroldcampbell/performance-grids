@@ -1,17 +1,20 @@
-<div>
-	<div class="week">
-		<div class="time-stamp">
-			<div class="am">a.m.</div>
-			<div class="pm">p.m.</div>
-		</div>
-		<div class="days">
-			<div class="day" ng-repeat="day in days">
-				<div class="dow">{{day.dow}}</div>
-				<div class="hours">
-					<div class="hour" ng-class="{day_am:vm.is_am(hr)}"  ng-repeat="hr in day.hour"></div>
+<div class="grid">
+	<div class="grid-container">
+		<div class="title">Activity by Week</div>
+		<div class="week">
+			<div class="time-stamp">
+				<div class="am">a.m.</div>
+				<div class="pm">p.m.</div>
+			</div>
+			<div class="days">
+				<div class="day" ng-repeat="day in days">
+					<div class="dow">{{day.dow}}</div>
+					<div class="hours">
+						<div class="hour" ng-class="{day_am:vm.is_am(hr)}" ng-repeat="hr in day.hour"></div>
+					</div>
 				</div>
 			</div>
-		</div>
 
+		</div>
 	</div>
 </div>
