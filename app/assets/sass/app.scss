@@ -7,6 +7,8 @@ $base-box-size: 10px;
 
 $font-size: $base-font-size * $box-size/$base-box-size;
 
+$warm_hr_color: #e43d02;
+
 body {
   font-size: 1em;
 }
@@ -81,16 +83,30 @@ div.days {
     div.hours {
       margin-top: $box-size + $box-space*2;//$box-size;
 
-      div.hour {
+      .hour {
         height: $box-size;
         width: $box-size;
         margin: 2px;
         padding: 0;
         background-color: #f0f0f0;
+//        border:solid 1px f0f0f0;
       }
 
-      div.day_am {
+      .day_am {
         background-color: #f9f9f9;
+      }
+
+      .level4 {
+        background-color: $warm_hr_color;
+      }
+      .level3 {
+        background-color: lighten($warm_hr_color, 25%);
+      }
+      .level2 {
+        background-color: lighten($warm_hr_color, 38%);
+      }
+      .level1 {
+        background-color: lighten($warm_hr_color, 50%);
       }
     }
   }
