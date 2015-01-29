@@ -8,9 +8,13 @@
 			</div>
 			<div class="days">
 				<div class="day" ng-repeat="day in days">
-					<div class="dow">{{day.dow}}</div>
+					<div class="dow">{{day.title}}</div>
 					<div class="hours">
-						<div class="hour" ng-class="{day_am:vm.is_am(hr)}" ng-repeat="hr in day.hour"></div>
+						<div class="hour" id="{{day.col}}_{{row}}"
+							 ng-class="{day_am:vm.is_am(row), level4:vm.is_level_4(day, row), level4:vm.is_level_4(day, row), level3:vm.is_level_3(day, row), level2:vm.is_level_2(day, row), level1:vm.is_level_1(day, row)}"
+
+
+							 ng-repeat="row in day.rows"></div>
 					</div>
 				</div>
 			</div>

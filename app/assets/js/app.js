@@ -3,7 +3,7 @@
 
     'use strict';
 
-    angular.module("app", ['ngRoute']);
+    angular.module("app", ['ngRoute', 'WeekGridService']);
     angular.module("app")
         .config(['$routeProvider', function ($routeProvider) {
             $routeProvider

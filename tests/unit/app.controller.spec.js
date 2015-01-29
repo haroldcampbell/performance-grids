@@ -8,22 +8,16 @@
         var rootScope, scope, controller, weekMocks;
 
         beforeEach(module('app'));
-        beforeEach(inject(function($rootScope, $controller){
+
+        beforeEach(inject(function($rootScope, $controller, WeekGridService){
             rootScope = $rootScope;
             scope = rootScope.$new();
             controller = $controller('AppController', {
-                $scope: scope
+                $scope: scope,
+                weekGridService: WeekGridService
             });
 
-            weekMocks = [
-                {dow: 'S', hour: [0, 1, 2, 3, 4, 5, 6, 7]},
-                {dow: '', hour: [0, 1, 2, 3, 4, 5, 6, 7]},
-                {dow: 'W', hour: [0, 1, 2, 3, 4, 5, 6, 7]},
-                {dow: '', hour: [0, 1, 2, 3, 4, 5, 6, 7]},
-                {dow: '', hour: [0, 1, 2, 3, 4, 5, 6, 7]},
-                {dow: '', hour: [0, 1, 2, 3, 4, 5, 6, 7]},
-                {dow: 'S', hour: [0, 1, 2, 3, 4, 5, 6, 7]}
-            ];
+            weekMocks = WeekGridService.getWeekData();
         }));
 
 
