@@ -6,18 +6,16 @@
 				<div class="am">a.m.</div>
 				<div class="pm">p.m.</div>
 			</div>
-			<div class="days">
-				<div class="day" ng-repeat="day in days">
-					<div class="dow">{{day.title}}</div>
-					<div class="hours">
-						<div class="hour" id="{{day.col}}_{{row}}"
-							 ng-class="{day_am:vm.is_am(row), level4:vm.is_level_4(day, row), level4:vm.is_level_4(day, row), level3:vm.is_level_3(day, row), level2:vm.is_level_2(day, row), level1:vm.is_level_1(day, row)}"
-
-
-							 ng-repeat="row in day.rows"></div>
-					</div>
-				</div>
-			</div>
+			<div week-grid gId="weekId" days="days" activities="activities"></div>
+			<!--<div class="days">-->
+				<!--<div class="day" ng-repeat="day in days">-->
+					<!--<div class="dow">{{day.title}}</div>-->
+					<!--<div class="hours">-->
+						<!--<div id="{{day.col}}_{{row}}" class="hour {{evalCSS(day, row)}}"-->
+							 <!--ng-repeat="row in day.rows"></div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
 
 		</div>
 	</div>

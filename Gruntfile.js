@@ -22,6 +22,13 @@ module.exports = function (grunt) {
             },
 
             watch: {
+                html: {
+                    files: '/app/**/*.html',
+                    options: {
+                        livereload: true
+
+                    }
+                },
                 css: {
                     files: 'app/assets/sass/*',
                     tasks: ['sass'],
@@ -40,6 +47,14 @@ module.exports = function (grunt) {
                     files: ['tests/**/*.js'],
                     tasks: ['jshint']
                 }
+            },
+
+            protractor: {
+                options: {
+                    //keepAlive: true,
+                    configFile: "tests/protractor.conf.js"
+                },
+                run: {}
             },
 
             sass: {
@@ -62,8 +77,17 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-protractor-runner');
 
     grunt.registerTask('default', ['jshint']);
     grunt.registerTask('test', ['jshint']);
+    grunt.registerTask('e2etest', [
+        //'clean:server',
+        //'concurrent:test',
+        //'autoprefixer',
+        //'connect:test',
+        //'karma',
+        'protractor'
+    ]);
 };
 

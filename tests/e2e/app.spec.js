@@ -1,4 +1,4 @@
-describe('week grird', function () {
+describe('app', function () {
     beforeEach(function () {
         browser.get('app/#/');
     });
