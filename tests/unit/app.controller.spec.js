@@ -1,33 +1,46 @@
 /* global describe, it, before, beforeEach, after, afterEach */
 
-(function() {
+(function () {
     'use strict';
 
-    describe('AppController', function() {
+    describe('AppController', function () {
 
-        var rootScope, scope, controller, weekMocks;
+        var rootScope, scope, controller, weekMocks, day;
 
         beforeEach(module('app'));
 
-        beforeEach(inject(function($rootScope, $controller, WeekGridService){
+        beforeEach(inject(function ($rootScope, $controller, WeekGridService) {
+
+
             rootScope = $rootScope;
             scope = rootScope.$new();
+            weekMocks = WeekGridService.getWeekData();
+
             controller = $controller('AppController', {
                 $scope: scope,
                 weekGridService: WeekGridService
             });
 
-            weekMocks = WeekGridService.getWeekData();
+            /* col = 1 is Monday */
+            day = {col: 1};
+            /* mock activities */
+            scope.activities = {
+                /* col: {...} */
+                1: [
+                    /* row: {...} */
+                    {value: 83}, /* Level 4 */
+                    {value: 63}, /* Level 3 */
+                    {value: 41}, /* Level 2 */
+                    {value: 28}, /* Level 1 */
+                    {value: 18}  /* Level 0 */
+                ]
+            };
         }));
 
 
-        it('should exist', function() {
-           expect(controller).toBeDefined();
+        it('should exist', function () {
+            expect(controller).toBeDefined();
         });
 
-        it('should set am times correctly', function() {
-            expect(controller.is_am(2)).toBeTruthy();
-            expect(controller.is_am(4)).toBeFalsy();
-        });
     });
 })();
