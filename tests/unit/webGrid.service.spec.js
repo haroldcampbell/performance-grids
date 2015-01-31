@@ -23,7 +23,6 @@
                 service.execIsLevel = function (level, value) {
                     return service.context.isLevel(level, value);
                 };
-
             }));
 
             it('it should have activities', function () {

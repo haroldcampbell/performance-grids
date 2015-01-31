@@ -11,9 +11,13 @@
             scope: {
                 days: '=',
                 activities: '=',
+                gridId: '@gridId'
             },
             restrict: 'A',
-            controller: function($scope) {
+            controller: function ($scope) {
+                var _this = this;
+
+                _this.$scope = $scope;
 
                 $scope.is_am = function (hour) {
                     return hour < 4;
@@ -25,13 +29,14 @@
                     if ($scope.is_am(index))
                         css = "day_am";
 
-                    var level = getRowLevel(day, index);
-                    css += " level"+level;
+                    var level = _this.getRowLevel(day, index);
+                    if (level !== false)
+                        css += " level" + level;
 
                     return css;
                 };
 
-                function getRowLevel(day, index) {
+                this.getRowLevel = function(day, index) {
                     var activity = $scope.activities[day.col];
 
                     if (!!!activity || !!!activity[index])
@@ -42,7 +47,7 @@
                     return weekGridService.getActivityLevel(cell.value);
                 }
             },
-            template: '<div class="days">' +
+            template: '<div id="{{gridId}}" class="days">' +
             '   <div class="day" ng-repeat="day in days">' +
             '       <div class="dow">{{day.title}}</div>' +
             '       <div class="hours">' +

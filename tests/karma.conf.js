@@ -9,7 +9,7 @@ module.exports = function(config){
             'bower_components/angular-resource/angular-resource.js',
             'bower_components/angular-animate/angular-animate.js',
             'bower_components/angular-mocks/angular-mocks.js',
-            //'bower_components/jquery/dist/jquery.js',
+            'bower_components/jquery/dist/jquery.js',
             'app/assets/js/app.js',
             'app/assets/js/*.js',
             'tests/unit/*.js'
