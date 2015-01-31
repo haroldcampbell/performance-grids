@@ -44,7 +44,7 @@ module.exports = function (grunt) {
                     }
                 },
                 tests: {
-                    files: ['tests/**/*.js'],
+                    files: ['test/**/*.js'],
                     tasks: ['jshint']
                 }
             },
@@ -52,7 +52,7 @@ module.exports = function (grunt) {
             protractor: {
                 options: {
                     //keepAlive: true,
-                    configFile: "tests/protractor.conf.js"
+                    configFile: "test/protractor.conf.js"
                 },
                 run: {}
             },
