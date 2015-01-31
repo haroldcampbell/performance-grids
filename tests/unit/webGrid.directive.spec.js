@@ -4,8 +4,8 @@
     'use strict';
 
     describe('webGrid.directive', function () {
-        var gridId = "sharGridId", day = 1;
         var elm, scope;
+        var gridId = "sharGridId", day = 1;
 
         beforeEach(module('app'));
         beforeEach(module('WeekGridService'));
@@ -33,7 +33,6 @@
             };
             elm = $compile(template)(scope);
             scope.$digest();
-
         }));
 
         it("should be defined", function () {
@@ -41,7 +40,23 @@
         });
 
         it('should have "days" div', function () {
-            expect(elm.html()).toContain('class="days');
+            expect(elm.children(0).attr("class")).toBe('days');
+        });
+
+        describe('Cells', function(){
+            //describe("grid")
+            //dump(elm.attr);
+            //
+            //var element;
+            //beforeEach(inject(function () {
+            //    dump(elm);
+            //    element = elm;
+            //}));
+
+            //it('should have "days" div', function () {
+            //    dump(elm.children(0).attr("class"));
+            //});
+
         });
 
         describe('Controller function', function () {
@@ -50,6 +65,7 @@
             beforeEach(inject(function () {
                 controller = elm.controller('weekGrid');
             }));
+
 
             describe('getRowLevel', function () {
                 it('should expect Level 4 is between 80-101%', function () {
@@ -100,6 +116,7 @@
                     expect(controller.$scope.evalCSS(day, 6)).toContain('level0');
                 });
             });
+
         });
     });
 })();
