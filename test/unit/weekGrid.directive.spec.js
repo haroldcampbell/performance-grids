@@ -43,21 +43,21 @@
             expect(elm.children(0).attr("class")).toBe('days');
         });
 
-        describe('Cells', function(){
-            //describe("grid")
-            //dump(elm.attr);
-            //
-            //var element;
-            //beforeEach(inject(function () {
-            //    dump(elm);
-            //    element = elm;
-            //}));
-
-            //it('should have "days" div', function () {
-            //    dump(elm.children(0).attr("class"));
-            //});
-
-        });
+        //describe('Cells', function(){
+        //    //describe("grid")
+        //    //dump(elm.attr);
+        //    //
+        //    //var element;
+        //    //beforeEach(inject(function () {
+        //    //    dump(elm);
+        //    //    element = elm;
+        //    //}));
+        //
+        //    //it('should have "days" div', function () {
+        //    //    dump(elm.children(0).attr("class"));
+        //    //});
+        //
+        //});
 
         describe('Controller function', function () {
             var controller;
