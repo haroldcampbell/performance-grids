@@ -19,7 +19,7 @@
             scope: {
                 days: '=',
                 activities: '=',
-                gridId: '@gridId',
+                gridId: '@',
                 /**
                  * An integrer value.
                  * hightlightLevel set the level above which the grid should be hightlighted.
