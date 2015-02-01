@@ -61,15 +61,16 @@ div.week {
   }
 }
 
-div.days {
-  div.day {
+div.perf-grid {
+
+  div.per-grid-col {
     margin: 0;
     padding: 0;
     width: $box-size;
     display: inline-block;
     margin-left: $box-space;
 
-    div.dow {
+    div.per-grid-col-title {
       height: $box-size;
       width: $box-size;
       display: inline-block;
@@ -80,10 +81,10 @@ div.days {
       font-size: $font-size;
     }
 
-    div.hours {
+    div.per-grid-col-rows {
       margin-top: $box-size + $box-space*2;//$box-size;
 
-      .hour {
+      .per-grid-col-row {
         height: $box-size;
         width: $box-size;
         margin: 2px;
@@ -91,28 +92,28 @@ div.days {
         background-color: #f0f0f0;
       }
 
-      .day_am {
+      .perf-grid-highlight {
         background-color: #f9f9f9;
       }
 
-      .level4 {
+      .perf-level4 {
         background-color: $warm_hr_color;
       }
-      .level3 {
+      .perf-level3 {
         background-color: lighten($warm_hr_color, 25%);
       }
-      .level2 {
+      .perf-level2 {
         background-color: lighten($warm_hr_color, 38%);
       }
-      .level1 {
+      .perf-level1 {
         background-color: lighten($warm_hr_color, 50%);
       }
-      .level0 {
+      .perf-level0 {
       }
     }
   }
 
-  div.day:first-child {
+  div.per-grid-col:first-child {
     margin-left:$box-size*2;//25px;
   }
 

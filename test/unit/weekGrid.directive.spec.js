@@ -4,15 +4,15 @@
     'use strict';
 
     describe('webGrid.directive', function () {
-        var elm, scope;
-        var gridId = "sharGridId", day = 1;
+        var compile, elm, scope, day = 1;
+        var templateWithGridId = '<div week-grid grid-id="sharGridId" days="days" activities="activities"></div>';
+        var templateWithHightlightLevel = '<div week-grid grid-id="sharGridId" hightlight-level="4" days="days" activities="activities"></div>';
 
         beforeEach(module('app'));
         beforeEach(module('WeekGridService'));
         beforeEach(inject(function ($rootScope, $compile, WeekGridService) {
-            var template = '<div grid-id="' + gridId + '" week-grid days="days" activities="activities">' +
-                '</div>';
 
+            compile = $compile;
             scope = $rootScope.$new();
             scope.days = WeekGridService.getWeekData();
 
@@ -31,7 +31,7 @@
                     6: {value: 18}  /* Level 0 */
                 }
             };
-            elm = $compile(template)(scope);
+            elm = compile(templateWithGridId)(scope);
             scope.$digest();
         }));
 
@@ -39,25 +39,30 @@
             expect(elm.isolateScope().$$childTail).toBeDefined();
         });
 
-        it('should have "days" div', function () {
-            expect(elm.children(0).attr("class")).toBe('days');
+        it('should have "per-grid-col" div', function () {
+            expect(elm.children(0).attr("class")).toContain('per-grid-col');
         });
 
-        //describe('Cells', function(){
-        //    //describe("grid")
-        //    //dump(elm.attr);
-        //    //
-        //    //var element;
-        //    //beforeEach(inject(function () {
-        //    //    dump(elm);
-        //    //    element = elm;
-        //    //}));
-        //
-        //    //it('should have "days" div', function () {
-        //    //    dump(elm.children(0).attr("class"));
-        //    //});
-        //
-        //});
+        it('should NOT have "hightlightLevel" set', function () {
+            var controller = elm.controller('weekGrid');
+            expect(controller.$scope.hightlightLevel).toBeUndefined();
+        });
+        describe('Cells', function(){
+            var controller;
+
+            beforeEach(inject(function () {
+                elm = compile(templateWithHightlightLevel)(scope);
+                scope.$digest();
+
+                controller = elm.controller('weekGrid');
+            }));
+
+            it('should have "hightlightLevel" set', function () {
+                controller._directive.evalHighlightedLevel(controller.$scope);
+                expect(controller.$scope.hightlightLevel).toBe(4);
+            });
+
+        });
 
         describe('Controller function', function () {
             var controller;

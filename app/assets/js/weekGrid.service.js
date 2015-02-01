@@ -57,7 +57,7 @@
             if (_this.isLevel(0, value))
                 return 0;
 
-            return -1
+            return -1;
         }
 
         function getWeekData() {

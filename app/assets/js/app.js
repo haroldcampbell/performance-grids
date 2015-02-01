@@ -12,5 +12,4 @@
                     controller: 'AppController'
                 });
         }]);
-
 })();
