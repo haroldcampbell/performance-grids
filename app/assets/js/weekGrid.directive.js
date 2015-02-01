@@ -45,7 +45,7 @@
                     var cell = activity[index];
 
                     return weekGridService.getActivityLevel(cell.value);
-                }
+                };
             },
             template: '<div id="{{gridId}}" class="days">' +
             '   <div class="day" ng-repeat="day in days">' +
