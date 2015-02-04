@@ -3,24 +3,21 @@
 
 body {
   font-size: 1em;
+  padding: 20px;
 }
 
 div.grid {
   display: inline-block;
   border: solid 1px #ccc;
-  padding: $box-size/2;
-
-  .grid-container {
-    display: inline-block;
-    border: solid 1px #ccc;
 
     .title {
-      font-size: 1.2em;
+      font-size: 2em;
       color: #707077;
       text-align: center;
       padding: 5px 0;
       background-color: #f0f0f0;
+      border-bottom: solid 1px #ccc;
     }
-  }
+//  }
 }
 
