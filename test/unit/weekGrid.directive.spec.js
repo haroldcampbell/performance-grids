@@ -5,8 +5,7 @@
 
     describe('webGrid.directive', function () {
         var compile, elm, scope, day = 1;
-        var templateWithGridId = '<div week-grid grid-id="sharGridId" days="days" activities="activities"></div>';
-        var templateWithHightlightLevel = '<div week-grid grid-id="sharGridId" hightlight-level="4" days="days" activities="activities"></div>';
+        var templateWithGridId = '<week-grid grid-id="sharGridId" days="days" activities="activities"></week-grid>';
 
         beforeEach(module('app'));
         beforeEach(module('WeekGridService'));
@@ -47,81 +46,6 @@
             var controller = elm.controller('weekGrid');
             expect(controller.$scope.hightlightLevel).toBeUndefined();
         });
-        describe('Cells', function(){
-            var controller;
 
-            beforeEach(inject(function () {
-                elm = compile(templateWithHightlightLevel)(scope);
-                scope.$digest();
-
-                controller = elm.controller('weekGrid');
-            }));
-
-            it('should have "hightlightLevel" set', function () {
-                controller._directive.evalHighlightedLevel(controller.$scope);
-                expect(controller.$scope.hightlightLevel).toBe(4);
-            });
-
-        });
-
-        describe('Controller function', function () {
-            var controller;
-
-            beforeEach(inject(function () {
-                controller = elm.controller('weekGrid');
-            }));
-
-
-            describe('getRowLevel', function () {
-                it('should expect Level 4 is between 80-101%', function () {
-                    var result = controller.getRowLevel(day, 1);
-                    expect(result).toBe(4);
-                });
-
-                it('should expect Level 3 is between 60-79%', function () {
-                    var result = controller.getRowLevel(day, 2);
-
-                    expect(result).toBe(3);
-                });
-
-                it('should expect Level 2 is between 40-69%', function () {
-                    var result = controller.getRowLevel(day, 3);
-
-                    expect(result).toBe(2);
-                });
-
-                it('should expect Level 1 is between 20-39%', function () {
-                    var result = controller.getRowLevel(day, 5);
-
-                    expect(result).toBe(1);
-                });
-
-                it('should expect Level 0 is between 0-19%', function () {
-                    var result = controller.getRowLevel(day, 6);
-
-                    expect(result).toBe(0);
-                });
-            });
-
-            describe('evalCSS', function () {
-
-                it('should be correct for level 4', function () {
-                    expect(controller.$scope.evalCSS(day, 1)).toContain('level4');
-                });
-                it('should be correct for level 3', function () {
-                    expect(controller.$scope.evalCSS(day, 2)).toContain('level3');
-                });
-                it('should be correct for level 2', function () {
-                    expect(controller.$scope.evalCSS(day, 3)).toContain('level2');
-                });
-                it('should be correct for level 1', function () {
-                    expect(controller.$scope.evalCSS(day, 5)).toContain('level1');
-                });
-                it('should be correct for level 0', function () {
-                    expect(controller.$scope.evalCSS(day, 6)).toContain('level0');
-                });
-            });
-
-        });
     });
 })();

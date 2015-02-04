@@ -73,7 +73,7 @@
 
             },
             replace: true,
-            restrict: 'A',
+            restrict: 'EA',
 
             controller: function ($scope) {
                 var _this = this;
