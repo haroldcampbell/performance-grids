@@ -51,7 +51,7 @@ Each hash must consist of the following:
 
 Below is an example of the `json` data that is expected.
 
-```json
+```javascript
     [
         {col: 0, title: 'S', rows: [0, 1, 2, 3, 4, 5, 6, 7]},
         {col: 1, title: '', rows: [0, 1, 2, 3, 4, 5, 6, 7]},
@@ -67,7 +67,7 @@ This example will create 7 columns, each with 8 rows.
 
 To create a much larger chart, you just need a larger array of column data.
 
-For example, the chart below was made with 28 rows. See `demoMonth.controller.js`.
+For example, the chart below was made with 28 rows. See [demoMonth.controller.js](app/assets/js/demoMonth.controller.js).
 
 ![v0.0.1](snapshots/boxgrid-v1.0.0-month.png)
 
@@ -79,7 +79,7 @@ It is a hash of columns, that consists of a hash of rows, and the associated val
 
 See the code snippet for a well-formed example.
 
-```json
+```javascript
     {
         /* col: {...} */
         1: {
@@ -103,7 +103,7 @@ See the code snippet for a well-formed example.
     )
 ```
 
-*View the demo service `weekGrid.service.js` for a more structured example.*
+*View the demo service [weekGrid.service.js](app/assets/js/weekGrid.service.js) for a more structured example.*
 
 In the example above, only 2 columns of data are provided; columns 1 and 2.
 Similarly, for column 1, only rows 1 - 6 will have data, while for column 2, only rows 1 - 5 will have data displayed in the chart.
