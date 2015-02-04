@@ -98,11 +98,11 @@
 
                     /** Only apply the highlight if the hightlightLevel is set and the row_index is less than that hightlightLevel */
                     if (!!_this.$scope.hightlightLevel && $scope.isLevelHighlighted(index))
-                        css = "perf-grid-highlight";
+                        css = "bg-col-row-highlight";
 
                     var level = _this.getRowLevel(data, index);
                     if (level !== false)
-                        css += " perf-level" + level;
+                        css += " bg-perf-level" + level;
 
                     return css;
                 };
@@ -118,10 +118,10 @@
                     return _directive.getLevel(cell.value);
                 };
             },
-            template: '<div id="{{boxGridId}}" class="perf-grid">' +
-            '   <div class="per-grid-col" ng-repeat="data in gridDataSource">' +
-            '       <div class="per-grid-col-rows">' +
-            '           <div id="{{data.col}}_{{row}}" class="per-grid-col-row {{evalCSS(data, row)}}" ng-repeat="row in data.rows"></div>' +
+            template: '<div id="{{boxGridId}}" class="box-grid">' +
+            '   <div class="bg-col" ng-repeat="data in gridDataSource">' +
+            '       <div class="bg-col-rows">' +
+            '           <div id="{{data.col}}_{{row}}" class="bg-col-row {{evalCSS(data, row)}}" ng-repeat="row in data.rows"></div>' +
             '       </div>' +
             '   </div>' +
             '</div>'

@@ -6,6 +6,7 @@
         var compile, scope, elm;
         var template = '<box-grid grid-data-source="gridDataSource" levels-data-source="levelsDataSource"></box-grid>';
         var templateWithHightlightLevel = '<box-grid grid-id="sharGridId" hightlight-level="4" grid-data-source="gridDataSource" levels-data-source="levelsDataSource"></box-grid>';
+        var data = {col: 1};
 
         beforeEach(module('app'));
         beforeEach(inject(function ($rootScope, $compile) {
@@ -42,8 +43,8 @@
             expect(elm.isolateScope().$$childTail).toBeDefined();
         });
 
-        it("should have perf-grid class on div", function () {
-            expect(elm.attr("class")).toContain('perf-grid');
+        it("should have box-grid class on div", function () {
+            expect(elm.attr("class")).toContain('box-grid');
         });
 
         it('should NOT have "hightlightLevel" set', function () {
@@ -51,8 +52,8 @@
             expect(controller.$scope.hightlightLevel).toBeUndefined();
         });
 
-        describe('Highlighted Cells', function(){
-            var controller;
+        describe('Highlighted Cells', function () {
+            var controller, index;
 
             beforeEach(inject(function () {
                 elm = compile(templateWithHightlightLevel)(scope);
@@ -66,36 +67,27 @@
                 expect(controller.$scope.hightlightLevel).toBe(4);
             });
 
-            it('should highlight cell at index/row 0', function () {
-                expect(controller.$scope.isLevelHighlighted(0)).toBeTruthy();
-            });
-            it('should highlight cell at index/row 1', function () {
-                expect(controller.$scope.isLevelHighlighted(1)).toBeTruthy();
-            });
-            it('should highlight cell at index/row 2', function () {
-                expect(controller.$scope.isLevelHighlighted(2)).toBeTruthy();
-            });
-            it('should highlight cell at index/row 3', function () {
-                expect(controller.$scope.isLevelHighlighted(3)).toBeTruthy();
-            });
+            for (index = 0; index < 4; index++) {
+                (function (_index) {
+                    it('should highlight cells at index/row ' + _index, function () {
+                        expect(controller.$scope.isLevelHighlighted(_index)).toBeTruthy();
+                        expect(controller.$scope.evalCSS(data, _index)).toContain('bg-col-row-highlight');
+                    });
+                })(index);
+            }
 
-            it('should highlight cell at index/row 4', function () {
-                expect(controller.$scope.isLevelHighlighted(4)).toBeFalsy();
-            });
-            it('should highlight cell at index/row 5', function () {
-                expect(controller.$scope.isLevelHighlighted(5)).toBeFalsy();
-            });
-            it('should highlight cell at index/row 6', function () {
-                expect(controller.$scope.isLevelHighlighted(6)).toBeFalsy();
-            });
-            it('should highlight cell at index/row 7', function () {
-                expect(controller.$scope.isLevelHighlighted(7)).toBeFalsy();
-            });
+            for (index = 4; index < 8; index++) {
+                (function (_index) {
+                    it('should NOT highlight cells at index/row ' + _index, function () {
+                        expect(controller.$scope.isLevelHighlighted(_index)).toBeFalsy();
+                        expect(controller.$scope.evalCSS(data, _index)).not.toContain('bg-col-row-highlight');
+                    });
+                })(index);
+            }
         });
 
         describe('Controller function', function () {
             var controller;
-            var data = {col: 1};
 
             beforeEach(inject(function () {
                 controller = elm.controller('boxGrid');
@@ -142,19 +134,19 @@
 
             describe('CSS Eval', function () {
                 it('should be correct for level 4', function () {
-                    expect(controller.$scope.evalCSS(data, 1)).toContain('level4');
+                    expect(controller.$scope.evalCSS(data, 1)).toContain('bg-perf-level4');
                 });
                 it('should be correct for level 3', function () {
-                    expect(controller.$scope.evalCSS(data, 2)).toContain('level3');
+                    expect(controller.$scope.evalCSS(data, 2)).toContain('bg-perf-level3');
                 });
                 it('should be correct for level 2', function () {
-                    expect(controller.$scope.evalCSS(data, 3)).toContain('level2');
+                    expect(controller.$scope.evalCSS(data, 3)).toContain('bg-perf-level2');
                 });
                 it('should be correct for level 1', function () {
-                    expect(controller.$scope.evalCSS(data, 5)).toContain('level1');
+                    expect(controller.$scope.evalCSS(data, 5)).toContain('bg-perf-level1');
                 });
                 it('should be correct for level 0', function () {
-                    expect(controller.$scope.evalCSS(data, 6)).toContain('level0');
+                    expect(controller.$scope.evalCSS(data, 6)).toContain('bg-perf-level0');
                 });
             });
 
