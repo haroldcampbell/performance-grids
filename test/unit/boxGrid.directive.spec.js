@@ -2,12 +2,14 @@
 (function () {
     'use strict';
 
-    describe('boxGrid.directive', function(){
+    describe('boxGrid.directive', function () {
         var compile, scope, elm;
-        var template = '<div box-grid></div>';
+        var template = '<box-grid grid-data-source="gridDataSource" levels-data-source="levelsDataSource"></box-grid>';
+        var templateWithHighlightLevel = '<box-grid grid-id="sharGridId" highlight-level="4" grid-data-source="gridDataSource" levels-data-source="levelsDataSource"></box-grid>';
+        var data = {col: 1};
 
         beforeEach(module('app'));
-        beforeEach(inject(function($rootScope, $compile){
+        beforeEach(inject(function ($rootScope, $compile) {
             compile = $compile;
             scope = $rootScope.$new();
 
@@ -41,14 +43,143 @@
             expect(elm.isolateScope().$$childTail).toBeDefined();
         });
 
-        it("should have perf-grid class on div", function () {
-            expect(elm.attr("class")).toContain('perf-grid');
+        it("should have box-grid class on div", function () {
+            expect(elm.attr("class")).toContain('box-grid');
         });
 
-        it('should NOT have "hightlightLevel" set', function () {
+        it('should NOT have "highlightLevel" set', function () {
             var controller = elm.controller('boxGrid');
-            expect(controller.$scope.hightlightLevel).toBeUndefined();
+            expect(controller.$scope.highlightLevel).toBeUndefined();
         });
+
+        describe("Missing Datasources", function () {
+            var templateWithoutGridDataSource = '<box-grid grid-id="sharGridId" hightlight-level="4" levels-data-source="levelsDataSource"></box-grid>';
+            var templateWithoutLevelsDataSource = '<box-grid grid-id="sharGridId" hightlight-level="4" grid-data-source="gridDataSource" ></box-grid>';
+            var templateWithoutDataSources = '<box-grid grid-id="sharGridId" hightlight-level="4"></box-grid>';
+
+
+            it("should exist without grid-data-source", function () {
+                elm = compile(templateWithoutGridDataSource)(scope);
+                scope.$digest();
+
+                expect(elm.attr("class")).toContain('box-grid');
+            });
+
+            it("should exist without levels-data-source", function () {
+                elm = compile(templateWithoutLevelsDataSource)(scope);
+                scope.$digest();
+
+                expect(elm.attr("class")).toContain('box-grid');
+            });
+
+            it("should NOT generate errors without grid-data-source and levels-data-source", function () {
+                elm = compile(templateWithoutDataSources)(scope);
+                scope.$digest();
+
+                expect(elm.attr("class")).toContain('box-grid');
+            });
+        });
+
+        describe('Highlighted Cells', function () {
+            var controller, index;
+
+            beforeEach(inject(function () {
+                elm = compile(templateWithHighlightLevel)(scope);
+                scope.$digest();
+
+                controller = elm.controller('boxGrid');
+                controller._directive.evalHighlightedLevel(controller.$scope);
+            }));
+
+            it('should have highlightLevel wired in controller', function () {
+                expect(controller.$scope.highlightLevel).toBe(4);
+            });
+
+            for (index = 0; index < 4; index++) {
+                (function (_index) {
+                    it('should highlight cells at index/row ' + _index, function () {
+                        expect(controller.$scope.isLevelHighlighted(_index)).toBeTruthy();
+                        expect(controller.$scope.evalCSS(data, _index)).toContain('bg-col-row-highlight');
+                    });
+                })(index);
+            }
+
+            for (index = 4; index < 8; index++) {
+                (function (_index) {
+                    it('should NOT highlight cells at index/row ' + _index, function () {
+                        expect(controller.$scope.isLevelHighlighted(_index)).toBeFalsy();
+                        expect(controller.$scope.evalCSS(data, _index)).not.toContain('bg-col-row-highlight');
+                    });
+                })(index);
+            }
+        });
+
+        describe('Controller function', function () {
+            var controller;
+
+            beforeEach(inject(function () {
+                controller = elm.controller('boxGrid');
+            }));
+
+            it("should be gridDataSource wired", function () {
+                expect(controller.$scope.gridDataSource).toBeDefined();
+            });
+
+            it("should be levelsDataSource wired", function () {
+                expect(controller.$scope.levelsDataSource).toBeDefined();
+            });
+
+            describe('Row Level', function () {
+                it('should expect Level 4 is between 80-101%', function () {
+                    var result = controller.getRowLevel(data, 1);
+                    expect(result).toBe(4);
+                });
+
+                it('should expect Level 3 is between 60-79%', function () {
+                    var result = controller.getRowLevel(data, 2);
+
+                    expect(result).toBe(3);
+                });
+
+                it('should expect Level 2 is between 40-69%', function () {
+                    var result = controller.getRowLevel(data, 3);
+
+                    expect(result).toBe(2);
+                });
+
+                it('should expect Level 1 is between 20-39%', function () {
+                    var result = controller.getRowLevel(data, 5);
+
+                    expect(result).toBe(1);
+                });
+
+                it('should expect Level 0 is between 0-19%', function () {
+                    var result = controller.getRowLevel(data, 6);
+
+                    expect(result).toBe(0);
+                });
+            });
+
+            describe('CSS Eval', function () {
+                it('should be correct for level 4', function () {
+                    expect(controller.$scope.evalCSS(data, 1)).toContain('bg-perf-level4');
+                });
+                it('should be correct for level 3', function () {
+                    expect(controller.$scope.evalCSS(data, 2)).toContain('bg-perf-level3');
+                });
+                it('should be correct for level 2', function () {
+                    expect(controller.$scope.evalCSS(data, 3)).toContain('bg-perf-level2');
+                });
+                it('should be correct for level 1', function () {
+                    expect(controller.$scope.evalCSS(data, 5)).toContain('bg-perf-level1');
+                });
+                it('should be correct for level 0', function () {
+                    expect(controller.$scope.evalCSS(data, 6)).toContain('bg-perf-level0');
+                });
+            });
+
+        });
+
     });
 
 })();

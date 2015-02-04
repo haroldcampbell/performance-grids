@@ -1,0 +1,24 @@
+@import "box-grid-variables";
+
+.box-grid {
+
+  .bg-col {
+    margin: 0;
+    padding: 0;
+    width: $box-size;
+    display: inline-block;
+    margin-left: $box-space;
+
+    .bg-col-rows {
+      .bg-col-row {
+        height: $box-size;
+        width: $box-size;
+        margin: 2px;
+      }
+    }
+  }
+
+  @include default-cell-color(#f0f0f0);
+  @include default-cell-highlight-color(#fafafa);
+  @include level-colors(#ffa41f, (0, 10%, 15%, 25%, 35%));
+}

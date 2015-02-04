@@ -1,18 +1,67 @@
-<div class="grid">
-	<div class="grid-container">
-		<div class="title">Activity by Week</div>
-		<div class="week">
-			<div class="time-stamp">
-				<div class="am">a.m.</div>
-				<div class="pm">p.m.</div>
-			</div>
-			<div week-grid grid-id="weekId" hightlight-level="4" days="days" activities="activities">
-				this should be replaced by directive
-			</div>
+<div style="width:800px; margin:0 auto">
 
-			<div box-grid box-grid-id="boxGrid" hightlight-level="4" grid-data-source="days" levels-data-source="activities">
-				this should be replaced by directive
-			</div>
+	<div class="grid" ng-controller="DemoWeekController" style="margin-bottom: 20px;">
+		<div class="title">Activity by Week</div>
+		<week-grid grid-id="weekId" highlight-level="4" days="days" activities="activities">
+			this should be replaced by directive
+		</week-grid>
+	</div>
+
+	<div ng-controller="DemoWeekController" class="cool">
+		ng-controller="DemoWeekController" class="cool" highlight-level="4"
+		<div box-grid box-grid-id="boxGrid" highlight-level="4" grid-data-source="days"
+			 levels-data-source="activities">
+			this should be replaced by directive
+		</div>
+	</div>
+
+	<div ng-controller="DemoWeekController" class="circles">
+		ng-controller="DemoWeekController" class="circles" highlight-level="4"
+		<div box-grid box-grid-id="boxGrid" highlight-level="4" grid-data-source="days"
+			 levels-data-source="activities">
+			this should be replaced by directive
+		</div>
+	</div>
+
+	<div ng-controller="DemoWeekController">
+		ng-controller="DemoWeekController" highlight-level="4"
+		<div box-grid box-grid-id="boxGrid" highlight-level="4" grid-data-source="days">
+			this should be replaced by directive
+		</div>
+	</div>
+
+	<div ng-controller="DemoWeekController">
+		ng-controller="DemoWeekController" highlight-level="7
+		<div box-grid box-grid-id="boxGrid" highlight-level="7" grid-data-source="days">
+			this should be replaced by directive
+		</div>
+	</div>
+
+	<div ng-controller="DemoWeekController">
+		ng-controller="DemoWeekController" highlight-level="2"
+		<div box-grid box-grid-id="boxGrid" highlight-level="2" grid-data-source="days">
+			this should be replaced by directive
+		</div>
+	</div>
+
+	<div ng-controller="DemoWeekController" class="circles-default">
+		ng-controller="DemoWeekController" class="circles-default" highlight-level="4"
+		<div box-grid box-grid-id="boxGrid" highlight-level="4" grid-data-source="days">
+			this should be replaced by directive
+		</div>
+	</div>
+
+	<div ng-controller="DemoWeekController" class="circles-odd">
+		ng-controller="DemoWeekController" class="circles-odd" highlight-level="4"
+		<div box-grid box-grid-id="boxGrid" highlight-level="4" grid-data-source="days">
+			this should be replaced by directive
+		</div>
+	</div>
+
+	<div ng-controller="DemoMonthController">
+		ng-controller="DemoMonthController" highlight-level="4"
+		<div box-grid box-grid-id="boxGrid" highlight-level="4" grid-data-source="weeks">
+			this should be replaced by directive
 		</div>
 	</div>
 </div>

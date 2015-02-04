@@ -80,6 +80,7 @@
                     1: {value: 83}, /* Level 4 */
                     2: {value: 63}, /* Level 3 */
                     3: {value: 41}, /* Level 2 */
+                    4: {value: 21},
                     5: {value: 28}, /* Level 1 */
                     6: {value: 18}  /* Level 0 */
                 },
@@ -89,6 +90,7 @@
                     1: {value: 33},
                     2: {value: 85},
                     3: {value: 21},
+                    4: {value: 21},
                     5: {value: 60}
                 },
                 /* col: {...} */
@@ -115,8 +117,6 @@
                 }
             };
         }
-
-
     }
 
 })();

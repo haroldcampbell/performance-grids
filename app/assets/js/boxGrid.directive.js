@@ -9,9 +9,9 @@
     function boxGrid() {
         var _directive = boxGrid;
 
-        _directive.evalHighlightedLevel = function($scope) {
-            if (!!$scope.hightlightLevel) {
-                $scope.hightlightLevel = parseInt($scope.hightlightLevel);
+        _directive.evalHighlightedLevel = function ($scope) {
+            if (!!$scope.highlightLevel) {
+                $scope.highlightLevel = parseInt($scope.highlightLevel);
             }
         };
         /**
@@ -39,7 +39,7 @@
             return _directive.levels[level].lower <= value && value <= _directive.levels[level].upper;
         };
 
-        _directive.getLevel = function(value) {
+        _directive.getLevel = function (value) {
             if (_directive.isLevel(4, value))
                 return 4;
 
@@ -65,15 +65,15 @@
                 boxGridId: '@',
                 /**
                  * An integrer value.
-                 * hightlightLevel set the level above which the grid should be hightlighted.
+                 * highlightLevel set the level above which the grid should be hightlighted.
                  * If this is not set, then the grid will only have a standard color.
                  * If set, then cell above the highlighted level will given the 'perf-grid-highlight' css style.
                  */
-                hightlightLevel: '@'
+                highlightLevel: '@'
 
             },
             replace: true,
-            restrict: 'A',
+            restrict: 'EA',
 
             controller: function ($scope) {
                 var _this = this;
@@ -87,30 +87,33 @@
                  * @returns {boolean}
                  */
                 $scope.isLevelHighlighted = function (row_index) {
-                    if (!!!_this.$scope.hightlightLevel)
+                    if (angular.isUndefined(_this.$scope.highlightLevel))
                         return false;
 
-                    return row_index < _this.$scope.hightlightLevel;
+                    return row_index < _this.$scope.highlightLevel;
                 };
 
                 $scope.evalCSS = function (data, index) {
                     var css = "";
 
-                    /** Only apply the highlight if the hightlightLevel is set and the row_index is less than that hightlightLevel */
-                    if (!!_this.$scope.hightlightLevel && $scope.isLevelHighlighted(index))
-                        css = "perf-grid-highlight";
+                    /** Only apply the highlight if the highlightLevel is set and the row_index is less than that highlightLevel */
+                    if (!!_this.$scope.highlightLevel && $scope.isLevelHighlighted(index))
+                        css = "bg-col-row-highlight";
 
                     var level = _this.getRowLevel(data, index);
                     if (level !== false)
-                        css += " perf-level" + level;
+                        css += " bg-perf-level" + level;
 
                     return css;
                 };
 
                 this.getRowLevel = function (data, index) {
+                    if (angular.isUndefined($scope.levelsDataSource))
+                        return false;
+
                     var levelData = $scope.levelsDataSource[data.col];
 
-                    if (!!!levelData || !!!levelData[index])
+                    if (angular.isUndefined(levelData )|| angular.isUndefined(levelData[index]))
                         return false;
 
                     var cell = levelData[index];
@@ -118,10 +121,10 @@
                     return _directive.getLevel(cell.value);
                 };
             },
-            template: '<div id="{{boxGridId}}" class="perf-grid">' +
-            '   <div class="per-grid-col" ng-repeat="data in gridDataSource">' +
-            '       <div class="per-grid-col-rows">' +
-            '           <div id="{{data.col}}_{{row}}" class="per-grid-col-row {{evalCSS(data, row)}}" ng-repeat="row in data.rows"></div>' +
+            template: '<div id="{{boxGridId}}" class="box-grid">' +
+            '   <div class="bg-col" ng-repeat="data in gridDataSource">' +
+            '       <div class="bg-col-rows">' +
+            '           <div id="{{data.col}}_{{row}}" class="bg-col-row {{evalCSS(data, row)}}" ng-repeat="row in data.rows"></div>' +
             '       </div>' +
             '   </div>' +
             '</div>'
