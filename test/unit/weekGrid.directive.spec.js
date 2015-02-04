@@ -42,9 +42,9 @@
         //    expect(elm.children(0).attr("class")).toContain('per-grid-col');
         //});
 
-        it('should NOT have "hightlightLevel" set', function () {
+        it('should NOT have "highlightLevel" set', function () {
             var controller = elm.controller('weekGrid');
-            expect(controller.$scope.hightlightLevel).toBeUndefined();
+            expect(controller.$scope.highlightLevel).toBeUndefined();
         });
 
     });

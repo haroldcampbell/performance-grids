@@ -10,8 +10,8 @@
         var _directive = boxGrid;
 
         _directive.evalHighlightedLevel = function ($scope) {
-            if (!!$scope.hightlightLevel) {
-                $scope.hightlightLevel = parseInt($scope.hightlightLevel);
+            if (!!$scope.highlightLevel) {
+                $scope.highlightLevel = parseInt($scope.highlightLevel);
             }
         };
         /**
@@ -65,11 +65,11 @@
                 boxGridId: '@',
                 /**
                  * An integrer value.
-                 * hightlightLevel set the level above which the grid should be hightlighted.
+                 * highlightLevel set the level above which the grid should be hightlighted.
                  * If this is not set, then the grid will only have a standard color.
                  * If set, then cell above the highlighted level will given the 'perf-grid-highlight' css style.
                  */
-                hightlightLevel: '@'
+                highlightLevel: '@'
 
             },
             replace: true,
@@ -87,17 +87,17 @@
                  * @returns {boolean}
                  */
                 $scope.isLevelHighlighted = function (row_index) {
-                    if (angular.isUndefined(_this.$scope.hightlightLevel))
+                    if (angular.isUndefined(_this.$scope.highlightLevel))
                         return false;
 
-                    return row_index < _this.$scope.hightlightLevel;
+                    return row_index < _this.$scope.highlightLevel;
                 };
 
                 $scope.evalCSS = function (data, index) {
                     var css = "";
 
-                    /** Only apply the highlight if the hightlightLevel is set and the row_index is less than that hightlightLevel */
-                    if (!!_this.$scope.hightlightLevel && $scope.isLevelHighlighted(index))
+                    /** Only apply the highlight if the highlightLevel is set and the row_index is less than that highlightLevel */
+                    if (!!_this.$scope.highlightLevel && $scope.isLevelHighlighted(index))
                         css = "bg-col-row-highlight";
 
                     var level = _this.getRowLevel(data, index);

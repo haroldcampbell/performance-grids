@@ -5,7 +5,7 @@
     describe('boxGrid.directive', function () {
         var compile, scope, elm;
         var template = '<box-grid grid-data-source="gridDataSource" levels-data-source="levelsDataSource"></box-grid>';
-        var templateWithHightlightLevel = '<box-grid grid-id="sharGridId" hightlight-level="4" grid-data-source="gridDataSource" levels-data-source="levelsDataSource"></box-grid>';
+        var templateWithHighlightLevel = '<box-grid grid-id="sharGridId" highlight-level="4" grid-data-source="gridDataSource" levels-data-source="levelsDataSource"></box-grid>';
         var data = {col: 1};
 
         beforeEach(module('app'));
@@ -47,9 +47,9 @@
             expect(elm.attr("class")).toContain('box-grid');
         });
 
-        it('should NOT have "hightlightLevel" set', function () {
+        it('should NOT have "highlightLevel" set', function () {
             var controller = elm.controller('boxGrid');
-            expect(controller.$scope.hightlightLevel).toBeUndefined();
+            expect(controller.$scope.highlightLevel).toBeUndefined();
         });
 
         describe("Missing Datasources", function () {
@@ -84,15 +84,15 @@
             var controller, index;
 
             beforeEach(inject(function () {
-                elm = compile(templateWithHightlightLevel)(scope);
+                elm = compile(templateWithHighlightLevel)(scope);
                 scope.$digest();
 
                 controller = elm.controller('boxGrid');
                 controller._directive.evalHighlightedLevel(controller.$scope);
             }));
 
-            it('should have hightlightLevel wired in controller', function () {
-                expect(controller.$scope.hightlightLevel).toBe(4);
+            it('should have highlightLevel wired in controller', function () {
+                expect(controller.$scope.highlightLevel).toBe(4);
             });
 
             for (index = 0; index < 4; index++) {

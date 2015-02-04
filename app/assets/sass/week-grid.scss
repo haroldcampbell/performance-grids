@@ -63,6 +63,20 @@ $font-size: $base-font-size * $box-size/$base-box-size;
   @include level-colors(#4394ff, (0, 5%, 15%, 27%, 33%));
 }
 
+.circles-default .box-grid {
+  .bg-col-row {
+    border-radius: $box-size/2;
+    border:solid 1px  #f0f0f0;
+  }
+}
+
+.circles-odd .box-grid {
+  .bg-col-row {
+    border-radius: $box-size $box-size/2 $box-size 0;
+    border:solid 1px  #f0f0f0;
+  }
+}
+
 .circles .box-grid {
   .bg-col-row {
     border-radius: $box-size/2;
