@@ -76,11 +76,14 @@
                 };
             },
             template: '<div id="{{gridId}}" class="week-grid">' +
-            '   <div class="time-stamp">' +
-            '       <div class="am">a.m.</div>' +
-            '       <div class="pm">p.m.</div>' +
+            '   <div class="wkg-time-stamp">' +
+            '       <div class="wkg-am">a.m.</div>' +
+            '       <div class="wkg-pm">p.m.</div>' +
             '   </div>' +
-            '   <div box-grid box-grid-id="bg{{gridId}}" hightlight-level="{{hightlightLevel}}" grid-data-source="days" levels-data-source="activities"></div>' +
+            '   <div class="wkg-container">' +
+            '       <div class="wkg-title"><span class="wkg-day" ng-repeat="day in days">{{day.title}}</span></div>' +
+            '       <div box-grid box-grid-id="bg{{gridId}}" hightlight-level="{{hightlightLevel}}" grid-data-source="days" levels-data-source="activities"></div>' +
+            '   </div>' +
             '</div>'
 
         };

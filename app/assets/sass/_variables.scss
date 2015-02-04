@@ -1,0 +1,46 @@
+$box-size: 10px;
+$box-space: 2px;
+
+/** Support for themes */
+
+@mixin default-cell-color($col-row-bg-color) {
+  .bg-col-row {
+    background-color: $col-row-bg-color;
+  }
+}
+
+@mixin default-cell-highlight-color($col-row-bg-highlight-color) {
+  .bg-col-row-highlight {
+    background-color: $col-row-bg-highlight-color;
+  }
+}
+
+/*
+ $pref-level-base-color:
+ Base value from which all the colors for the different levels will be computed.
+
+ $colors:
+ A collection of percentages for lightening the colors.
+ Lower values in the $colors collection result in darker colors.
+*/
+@mixin level-colors($box-grid-level-base-color, $colors) {
+  .bg-perf-level4 {
+    background-color: lighten($box-grid-level-base-color, nth($colors, 1));
+  }
+  .bg-perf-level3 {
+    background-color: lighten($box-grid-level-base-color, nth($colors, 2));
+  }
+  .bg-perf-level2 {
+    background-color: lighten($box-grid-level-base-color, nth($colors, 3));
+  }
+  .bg-perf-level1 {
+    background-color: lighten($box-grid-level-base-color, nth($colors, 4));
+  }
+  .bg-perf-level0 {
+    background-color: lighten($box-grid-level-base-color, nth($colors, 5));
+  }
+}
+
+
+
+

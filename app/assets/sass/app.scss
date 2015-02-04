@@ -1,13 +1,5 @@
-$box-size: 10px;
-$box-space: 2px;
-$label-color: #999;
 
-$base-font-size: 0.8em;
-$base-box-size: 10px;
-
-$font-size: $base-font-size * $box-size/$base-box-size;
-
-$warm_hr_color: #e43d02;
+@import "variables";
 
 body {
   font-size: 1em;
@@ -28,92 +20,6 @@ div.grid {
       text-align: center;
       padding: 5px 0;
       background-color: #f0f0f0;
-    }
-  }
-}
-
-div.week-grid {
-  position: relative;
-  padding: $box-size/2 $box-size;
-  padding-right: $box-size + $box-space;
-  display: inline-block;
-
-  .time-stamp {
-    position: absolute;
-
-    .am, .pm {
-      float:left;
-      font-size: $font-size;
-      color: $label-color;
-    }
-
-    .am {
-      top: 0;
-      margin-top: $box-size + $box-space*2;
-    }
-
-    .pm {
-      position: absolute;
-      top: ($box-size + $box-space) * 5 + $box-space;
-      left: 0;
-    }
-  }
-
-  .box-grid {
-    display: inline-block;
-    margin-left:$box-size*2;//25px;
-  }
-}
-
-div.box-grid {
-
-  .bg-col {
-    margin: 0;
-    padding: 0;
-    width: $box-size;
-    display: inline-block;
-    margin-left: $box-space;
-
-    .bg-col-title {
-      height: $box-size;
-      width: $box-size;
-      display: inline-block;
-      text-align: center;
-      margin-left: 2px;
-      color: $label-color;
-      position:absolute;
-      font-size: $font-size;
-    }
-
-    .bg-col-rows {
-      margin-top: $box-size + $box-space*2;//$box-size;
-
-      .bg-col-row {
-        height: $box-size;
-        width: $box-size;
-        margin: 2px;
-        padding: 0;
-        background-color: #e0e0e0;
-      }
-      .bg-col-row-highlight {
-        background-color: #fafafa;
-//        box-shadow: 0px 1px 1px transparentize(#777, 0.75);
-      }
-
-      .bg-perf-level4 {
-        background-color: $warm_hr_color;
-      }
-      .bg-perf-level3 {
-        background-color: lighten($warm_hr_color, 25%);
-      }
-      .bg-perf-level2 {
-        background-color: lighten($warm_hr_color, 38%);
-      }
-      .bg-perf-level1 {
-        background-color: lighten($warm_hr_color, 50%);
-      }
-      .bg-perf-level0 {
-      }
     }
   }
 }
