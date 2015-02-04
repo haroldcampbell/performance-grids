@@ -32,45 +32,49 @@ div.grid {
   }
 }
 
-div.week {
+div.week-grid {
   position: relative;
   padding: $box-size/2 $box-size;
   padding-right: $box-size + $box-space;
   display: inline-block;
 
-  div.time-stamp {
+  .time-stamp {
     position: absolute;
 
-    div.am,div.pm {
+    .am, .pm {
       float:left;
       font-size: $font-size;
       color: $label-color;
-
     }
 
-    div.am {
+    .am {
       top: 0;
       margin-top: $box-size + $box-space*2;
     }
 
-    div.pm {
+    .pm {
       position: absolute;
       top: ($box-size + $box-space) * 5 + $box-space;
       left: 0;
     }
   }
+
+  .box-grid {
+    display: inline-block;
+    margin-left:$box-size*2;//25px;
+  }
 }
 
-div.perf-grid {
+div.box-grid {
 
-  div.per-grid-col {
+  .bg-col {
     margin: 0;
     padding: 0;
     width: $box-size;
     display: inline-block;
     margin-left: $box-space;
 
-    div.per-grid-col-title {
+    .bg-col-title {
       height: $box-size;
       width: $box-size;
       display: inline-block;
@@ -81,41 +85,36 @@ div.perf-grid {
       font-size: $font-size;
     }
 
-    div.per-grid-col-rows {
+    .bg-col-rows {
       margin-top: $box-size + $box-space*2;//$box-size;
 
-      .per-grid-col-row {
+      .bg-col-row {
         height: $box-size;
         width: $box-size;
         margin: 2px;
         padding: 0;
-        background-color: #f0f0f0;
+        background-color: #e0e0e0;
+      }
+      .bg-col-row-highlight {
+        background-color: #fafafa;
+//        box-shadow: 0px 1px 1px transparentize(#777, 0.75);
       }
 
-      .perf-grid-highlight {
-        background-color: #f9f9f9;
-      }
-
-      .perf-level4 {
+      .bg-perf-level4 {
         background-color: $warm_hr_color;
       }
-      .perf-level3 {
+      .bg-perf-level3 {
         background-color: lighten($warm_hr_color, 25%);
       }
-      .perf-level2 {
+      .bg-perf-level2 {
         background-color: lighten($warm_hr_color, 38%);
       }
-      .perf-level1 {
+      .bg-perf-level1 {
         background-color: lighten($warm_hr_color, 50%);
       }
-      .perf-level0 {
+      .bg-perf-level0 {
       }
     }
   }
-
-  div.per-grid-col:first-child {
-    margin-left:$box-size*2;//25px;
-  }
-
 }
 

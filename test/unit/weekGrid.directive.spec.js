@@ -38,9 +38,9 @@
             expect(elm.isolateScope().$$childTail).toBeDefined();
         });
 
-        it('should have "per-grid-col" div', function () {
-            expect(elm.children(0).attr("class")).toContain('per-grid-col');
-        });
+        //it('should have "per-grid-col" div', function () {
+        //    expect(elm.children(0).attr("class")).toContain('per-grid-col');
+        //});
 
         it('should NOT have "hightlightLevel" set', function () {
             var controller = elm.controller('weekGrid');

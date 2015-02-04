@@ -9,7 +9,7 @@
     function weekGrid(weekGridService) {
         var _directive = weekGrid;
 
-        _directive.evalHighlightedLevel = function($scope) {
+        _directive.evalHighlightedLevel = function ($scope) {
             if (!!$scope.hightlightLevel) {
                 $scope.hightlightLevel = parseInt($scope.hightlightLevel);
             }
@@ -75,13 +75,12 @@
                     return weekGridService.getActivityLevel(cell.value);
                 };
             },
-            template: '<div id="{{gridId}}" class="perf-grid">' +
-            '   <div class="per-grid-col" ng-repeat="day in days">' +
-            '       <div class="per-grid-col-title">{{day.title}}</div>' +
-            '       <div class="per-grid-col-rows">' +
-            '           <div id="{{day.col}}_{{row}}" class="per-grid-col-row {{evalCSS(day, row)}}" ng-repeat="row in day.rows"></div>' +
-            '       </div>' +
+            template: '<div id="{{gridId}}" class="week-grid">' +
+            '   <div class="time-stamp">' +
+            '       <div class="am">a.m.</div>' +
+            '       <div class="pm">p.m.</div>' +
             '   </div>' +
+            '   <div box-grid box-grid-id="bg{{gridId}}" hightlight-level="{{hightlightLevel}}" grid-data-source="days" levels-data-source="activities"></div>' +
             '</div>'
 
         };
