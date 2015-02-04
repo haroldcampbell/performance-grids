@@ -23,10 +23,10 @@ This generates the image below:
 
 The BoxGrid directive has 4 attributes.
 
-- box-grid-id: creates an id property with the specified binding
-- highlight-level: controls how the cells are highlighted
-- grid-data-source: json data that is used to determine the size of the grid
-- levels-data-source: json data that contains data that we want to visualize.
+- box-grid-id: Creates an `id` property with the specified binding
+- highlight-level: Controls how the cells are highlighted
+- grid-data-source: JSON data that is used to determine the size of the grid
+- levels-data-source: JSON data that contains data that we want to visualize.
 
 #### BoxGrid highlight-level Attribute
 
@@ -45,9 +45,9 @@ While setting `highlight-level` to 7 changes it to the follwing:
 The `grid-data-source` attribute must be an array of hashes.
 
 Each hash must consist of the following:
-- col: indicates which column the data belongs to
-- title: the title of the data in the column
-- row: the list of rows for the column.
+- col: Indicates which column the data belongs to
+- title: The title of the data in the column
+- row: The list of rows for the column.
 
 Below is an example of the `json` data that is expected.
 
@@ -187,13 +187,80 @@ The style for this *odd* chart is also quite easily done:
     }
 ```
 
-## Performance by Week Grid
+## Performance by WeekGrid
 
-##### Status: Work in progress
+The `WeekGrid` directive wraps the `BoxGrid` directive. With this directive you can create charts like the one below.
 
-Snap shot of version **v0.0.1**
+![v0.0.1](snapshots/weekgrid-v1.0.0.png)
 
-![v0.0.1](snapshots/weekgrid-v0.0.1.png)
+The HTML code:
+
+```html
+    <div class="grid" ng-controller="DemoWeekController">
+        <div class="title">Activity by Week</div>
+        <week-grid grid-id="weekId" highlight-level="4" days="days" activities="activities"></week-grid>
+    </div>
+```
+
+The [DemoWeek.controller.js](app/assets/js/demoWeek.controller.js) provides a working example of how wire the a service,
+in our case, the [WeekGrid.service.js](app/assets/js/weekGrid.service.js) to provide data for the `WeekGrid` directive.
+
+### WeekGrid Attributes
+
+The attributes on the `WeekGrid` directive are similar to those of the `BoxGrid`.
+- days: This is unchanged from the `BoxGrid`; JSON data that is used to determine the size of the grid
+- activities: This is unchanged from the `BoxGrid`; JSON data that contains data that we want to visualize
+- grid-id: Creates an `id` property with the specified binding. The nested `BoxGrid` gets its `id` prefixed with `bg`.
+- highlight-level: This is unchanged from the `BoxGrid`; It controls how the cells are highlighted.
+
+Consequently, we can use the same JSON data directly with a `BoxGrid`.
+
+Example 1 - Cool:
+
+![v0.0.1](snapshots/weekgrid-v1.0.0-cool.png)
+
+The HTML code:
+
+```html
+    <div ng-controller="DemoWeekController" class="cool">
+        ng-controller="DemoWeekController" class="cool" highlight-level="4"
+        <div box-grid box-grid-id="boxGrid" highlight-level="4" grid-data-source="days" levels-data-source="activities"></div>
+    </div>
+```
+Styled with CSS and SASS:
+
+```sass
+    .cool .box-grid {
+      @include default-cell-color(#fafafa);
+      @include default-cell-highlight-color(#eef5ff);
+      @include level-colors(#4394ff, (0, 5%, 15%, 27%, 33%));
+    }
+```
+
+Example 2 - Circles:
+
+![v0.0.1](snapshots/weekgrid-v1.0.0-circle.png)
+
+The HTML code:
+
+```html
+    <div ng-controller="DemoWeekController" class="circles">
+        ng-controller="DemoWeekController" class="circles" highlight-level="4"
+        <div box-grid box-grid-id="boxGrid" highlight-level="4" grid-data-source="days" levels-data-source="activities">
+        </div>
+    </div>
+```
+
+Styled with CSS and SASS:
+
+```sass
+    .circles .box-grid {
+      .bg-col-row {
+        border-radius: $box-size/2;
+        border:solid 1px  #ffeee3;
+      }
+    }
+```
 
 ## Performance by Month Grid
 
@@ -202,6 +269,28 @@ Snap shot of version **v0.0.1**
 ## Performance by Year Grid
 
 ##### Status: To be created
+
+## Tests
+
+Both **e2e** and **unit** tests are provided in the `test` folder.
+
+## Question or Problem
+
+If you have questions about how to use these performance grids, please direct these to StackOverflow.
+
+Find me on StackOverflow: [haroldcampbell](http://stackoverflow.com/users/83802/haroldcampbell)
+
+## Contribute
+
+`PR`s are welcome!
+
+If you have found a bug or want to add a feature, make the changes on the `develop` branch.
+
+I try to adhere to the [AngularJS Commit Guidelines](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md)
+
+## Feedback and Questions
+
+Find me on twitter: [haroldcampbell](http://twitter.com/haroldcampbell)
 
 ## Versions
 

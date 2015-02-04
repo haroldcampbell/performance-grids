@@ -35,7 +35,6 @@
             '       <div box-grid box-grid-id="bg{{gridId}}" hightlight-level="{{highlightLevel}}" grid-data-source="days" levels-data-source="activities"></div>' +
             '   </div>' +
             '</div>'
-
         };
     }
 })();
