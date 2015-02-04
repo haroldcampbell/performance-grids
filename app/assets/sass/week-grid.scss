@@ -1,4 +1,4 @@
-@import "variables";
+@import "box-grid-variables";
 
 $label-color: #999;
 $base-font-size: 0.8em;
@@ -55,5 +55,17 @@ $font-size: $base-font-size * $box-size/$base-box-size;
     @include default-cell-color(#f0f0f0);
     @include default-cell-highlight-color(#fafafa);
     @include level-colors(#941ad6, (0, 25%, 38%, 45%, 50%));
+  }
+}
+.cool .box-grid {
+  @include default-cell-color(#fafafa);
+  @include default-cell-highlight-color(#eef5ff);
+  @include level-colors(#4394ff, (0, 5%, 15%, 27%, 33%));
+}
+
+.circles .box-grid {
+  .bg-col-row {
+    border-radius: $box-size/2;
+    border:solid 1px  #ffeee3;
   }
 }

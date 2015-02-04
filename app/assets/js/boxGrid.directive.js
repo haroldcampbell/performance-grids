@@ -9,7 +9,7 @@
     function boxGrid() {
         var _directive = boxGrid;
 
-        _directive.evalHighlightedLevel = function($scope) {
+        _directive.evalHighlightedLevel = function ($scope) {
             if (!!$scope.hightlightLevel) {
                 $scope.hightlightLevel = parseInt($scope.hightlightLevel);
             }
@@ -39,7 +39,7 @@
             return _directive.levels[level].lower <= value && value <= _directive.levels[level].upper;
         };
 
-        _directive.getLevel = function(value) {
+        _directive.getLevel = function (value) {
             if (_directive.isLevel(4, value))
                 return 4;
 
@@ -87,7 +87,7 @@
                  * @returns {boolean}
                  */
                 $scope.isLevelHighlighted = function (row_index) {
-                    if (!!!_this.$scope.hightlightLevel)
+                    if (angular.isUndefined(_this.$scope.hightlightLevel))
                         return false;
 
                     return row_index < _this.$scope.hightlightLevel;
@@ -108,9 +108,12 @@
                 };
 
                 this.getRowLevel = function (data, index) {
+                    if (angular.isUndefined($scope.levelsDataSource))
+                        return false;
+
                     var levelData = $scope.levelsDataSource[data.col];
 
-                    if (!!!levelData || !!!levelData[index])
+                    if (angular.isUndefined(levelData )|| angular.isUndefined(levelData[index]))
                         return false;
 
                     var cell = levelData[index];

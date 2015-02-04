@@ -52,6 +52,34 @@
             expect(controller.$scope.hightlightLevel).toBeUndefined();
         });
 
+        describe("Missing Datasources", function () {
+            var templateWithoutGridDataSource = '<box-grid grid-id="sharGridId" hightlight-level="4" levels-data-source="levelsDataSource"></box-grid>';
+            var templateWithoutLevelsDataSource = '<box-grid grid-id="sharGridId" hightlight-level="4" grid-data-source="gridDataSource" ></box-grid>';
+            var templateWithoutDataSources = '<box-grid grid-id="sharGridId" hightlight-level="4"></box-grid>';
+
+
+            it("should exist without grid-data-source", function () {
+                elm = compile(templateWithoutGridDataSource)(scope);
+                scope.$digest();
+
+                expect(elm.attr("class")).toContain('box-grid');
+            });
+
+            it("should exist without levels-data-source", function () {
+                elm = compile(templateWithoutLevelsDataSource)(scope);
+                scope.$digest();
+
+                expect(elm.attr("class")).toContain('box-grid');
+            });
+
+            it("should NOT generate errors without grid-data-source and levels-data-source", function () {
+                elm = compile(templateWithoutDataSources)(scope);
+                scope.$digest();
+
+                expect(elm.attr("class")).toContain('box-grid');
+            });
+        });
+
         describe('Highlighted Cells', function () {
             var controller, index;
 
