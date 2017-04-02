@@ -6,7 +6,7 @@ github inspired grids for easily viewing/tracking performance.
 
 ## The basic BoxGrid
 
-The basic `BoxGrid` is generate with the code snippet below.
+The basic `BoxGrid` is generated with the code snippet below.
 
 ```html
     <div ng-controller="DemoWeekController">
@@ -30,7 +30,7 @@ The BoxGrid directive has 4 attributes.
 
 #### BoxGrid highlight-level Attribute
 
-By varying the value of `highlight-level` you can depict minimum and maximum, or cut-off values on the chart.
+By varying the value of `highlight-level` you can depict minimum, maximum, or cut-off values on the chart.
 
 For instance, setting `highlight-level` to 2 results in the image below:
 
@@ -67,7 +67,7 @@ This example will create 7 columns, each with 8 rows.
 
 To create a much larger chart, you just need a larger array of column data.
 
-For example, the chart below was made with 28 rows. See [demoMonth.controller.js](app/assets/js/demoMonth.controller.js).
+For example: the chart below was made with 28 rows. See [demoMonth.controller.js](app/assets/js/demoMonth.controller.js).
 
 ![v0.0.1](snapshots/boxgrid-v1.0.0-month.png)
 
